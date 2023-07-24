@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+<body>
+    <header>
+         <h2 class="logo"><img style="height: 40px; object-fit: cover; border-radius: 20px;" src="{% static 'img/worker.jpg' %}" alt="Logo"></h2>
+         <nav class="navigation">
+            <a href="#" class="bt_home">Home</a>
+            <a href="#" class="bt_login_Popup_about">About</a>
+            <a href="#" class="bt_service_Popup">Services</a>
+            <a href="#" class="bt_login_Popup1">Contact</a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'civil_work:log_out' %}" class="bt_login_Popup bt_login_Popup_logout">
+                    Log out
+                </a>
+            {% else %}
+                <button class="bt_login_Popup">Login</button>
+            {% endif %}
+            
+         </nav>
+    </header>
+
+    <div class="wrapper">
+        <span class="icon-close">
+            <ion-icon name="close-outline"></ion-icon>
+        </span>
+        <div class="form-box login">
+            <h2>Login</h2>
+            <form action="{% url 'civil_work:login_request' %}" method="POST">
+                {% csrf_token %}
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="mail"></ion-icon></span>
+                    <input type="text" name="username" required>
+                    <label>User Name</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                    <input type="password" name="password" required>
+                    <label>Password</label>
+                </div>
+                <div class="remember-forget">
+                    <label><input type="checkbox">  Remember me</label>
+                    <a href="#">Forget Password</a>
+                </div>
+                <button type="submit" class="btn">Login</button>
+                <div class="login-reg">
+                    <p>Don't have an account? <a href="#" class="register-link">Register</a>
+
+                    </p>
+                </div>
+            </form>
+        </div>
+
+        <div class="form-box register">
+            <h2>Resistration</h2>
+            <form action="{% url 'civil_work:registration' %}" method='POST'>
+                {% csrf_token %}
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="person"></ion-icon></span>
+                    <input type="text" name="username" required>
+                    <label>Username</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="mail"></ion-icon></span>
+                    <input type="email" name="email" required>
+                    <label>Email</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                    <input type="password" name="password" minlength='8' required>
+                    <label>Password</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                    <input type="password"  name="repassword" minlength='8' required>
+                    <label>Re Password</label>
+                </div>
+                <div class="remember-forget">
+                    <label><input type="checkbox">I agree to the terms & conditions</label>
+                </div>
+                <button type="submit" class="btn">Register</button>
+                <div class="login-reg">
+                    <p>Already have an account?<a href="#" class="login-link">Login</a>
+
+                    </p>
+                </div>
+            </form>
+        </div>
+
+    </div>
+    <div class="contact">
+        <span class="icon-close-contact">
+            <ion-icon name="close-outline"></ion-icon>
+        </span>
+        <div style="margin: 20px; text-align: center;">
+            <h1>Contact</h1>
+        </div>
+        <img class="dp" src="{% static 'img/dp.jpg' %}">
+        <div style="width: 100%; height: auto; vertical-align: top; margin-top: 10px;">
+            <div class="cont-details">
+                <strong>Developer</strong>
+            </div>
+            <div class="cont-details1">
+                <strong>MD. Mohaimenul Islam</strong>
+                <p>Department of CSE,</p>
+                <p>BSMRSTU</p>
+            </div>
+        </div>
+        <div style="width: 100%; height: auto; vertical-align: top; margin-top: 10px;">
+            <div class="cont-details">
+                <strong>Location</strong>
+            </div>
+            <div class="cont-details1">
+                <p>Gopalganj Sadar,
+                    8100,Gopalganj</p>
+            </div>
+        </div>
+        <div style="width: 100%; height: auto; vertical-align: top; margin-top: 10px;">
+            <div class="cont-details">
+                <strong>Email</strong>
+            </div>
+            <div class="cont-details1">
+                <p>mohaimenul103684@gmail.com</p>
+            </div>
+        </div>
+        <div style="width: 100%; height: auto; vertical-align: top; margin-top: 10px;">
+            <div class="cont-details">
+                <strong>Phone No.</strong>
+            </div>
+            <div class="cont-details1">
+                <p>01306-****35</p>
+            </div>
+        </div>
+    </div>
+    <div class="about">
+        <span class="icon-close-about">
+            <ion-icon name="close-outline"></ion-icon>
+        </span>
+        <div>
+            <div style="margin: 20px; text-align: center;">
+                <h1>About</h1>
+            </div>
+            <div style="margin: 30px; font-size:large; margin-top: 10px;">
+                Rebar calculator helps to find out how many rebars 
+                you need to create reinforcement in a concrete slab 
+                and how much it will cost you. Moreover, it can 
+                estimate the grid dimensions that you should use.
+            </div>
+            <h3 style="margin-left: 20px;">What is rebar?</h3>
+            <div style="margin: 30px; font-size:large; margin-top: 10px;">
+                Rebar (reinforcement steel/reinforcing steel) is a 
+                building material used to improve the properties of
+                concrete blocks. Those wires are made of patterned 
+                steel (improves adhesion), and they are usually placed 
+                in a way to create a mesh.
+            </div>
+            <div style="margin: 30px; font-size:large; margin-top: 10px;">
+                Civil engineers apply reinforcing steel when designing buildings 
+                and poured concrete driveways. You can estimate how much it costs 
+                with concrete driveway cost calculator. Besides the increased 
+                tension resistance, rebar also improves concrete cracking 
+                resilience and allows for reducing the thickness of concrete blocks.
+            </div>
+        </div>
+    </div>
+    <div class="service">
+        <span class="icon-close-service">
+            <ion-icon name="close-outline"></ion-icon>
+        </span>
+        <div>
+            <div class="service1">
+                <div style="margin: 20px; text-align: center;">
+                    <h1>Rod Calculation</h1>
+                </div>
+                <div style="margin: 40px; font-size:large">
+                    This service is for Civil Work, where user inputs the required pieces of rods 
+                    and get the answer of total rods bar required for the above requirements.
+                </div>
+                <div style="height: 200px; width: 100%; text-align: center; margin-top: 20%;">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'civil_work:service1' %}">
+                            <button class="next-pg">Get Service1</button>
+                        </a>
+                    {% else %}
+                        <button class="next-pg next-pg1">Get Service1</button>
+                        
+                    {% endif %}
+                </div>
+            </div>
+            <div class="vl"></div>
+            <div  class="service1">
+                <div style="margin: 20px; text-align: center;">
+                    <h1>Rod for Rebar</h1>
+                </div>
+                <div style="margin: 40px; font-size:large">
+                    This service is for also Civil Work, where user inputs the 
+                    details of the Rebar, and the required rod for that rebar is the output 
+                </div>
+                <div style="height: 200px; width: 100%; text-align: center; margin-top: 20%;">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'civil_work:service2' %}">
+                            <button class="next-pg">Get Service 2</button>
+                        </a>
+                    {% else %}
+                        <button class="next-pg next-pg2">Get Service 2</button>
+                        
+                    {% endif %}
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
